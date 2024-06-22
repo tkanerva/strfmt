@@ -17,7 +17,8 @@ fn to_string(val) {
   "?"
   |> cvt(dyn, dynamic.int, int.to_string)
   |> cvt(dyn, dynamic.float, float.to_string)
-  |> cvt(dyn, dynamic.list(of: dynamic.string), fn(x) { "[" <> string.join(x, ",") <> "]" })
+  |> cvt(dyn, dynamic.list(of: dynamic.string),
+    fn(x) { "[\"" <> string.join(x, "\", \"") <> "\"]" })
   |> cvt(dyn, dynamic.string, fn(x) { x })
   }
 

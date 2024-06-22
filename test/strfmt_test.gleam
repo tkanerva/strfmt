@@ -62,5 +62,5 @@ pub fn format_list_test() {
       |> f(lst)
       |> end()
 
-  str1 |> should.equal("a sequence of letters: [a,b,c]")
+  str1 |> should.equal("a sequence of letters: [\"a\", \"b\", \"c\"]")
 }
