@@ -13,12 +13,16 @@ fn cvt(val, dynvalue, detectfun, convertfun) {
   }
 
 fn to_string(val) {
+  let intlist_str = fn(lst) { "[" <> string.join( list.map(lst, fn(x) { int.to_string(x) } ) , ", ") <> "]"  }
+  let floatlist_str = fn(lst) { "[" <> string.join( list.map(lst, fn(x) { float.to_string(x) } ) , ", ") <> "]"  }
+  let stringlist_str = fn(lst) { "[\"" <> string.join(lst, "\", \"") <> "\"]" }
   let dyn = dynamic.from(val)
   "?"
   |> cvt(dyn, dynamic.int, int.to_string)
   |> cvt(dyn, dynamic.float, float.to_string)
-  |> cvt(dyn, dynamic.list(of: dynamic.string),
-    fn(x) { "[\"" <> string.join(x, "\", \"") <> "\"]" })
+  |> cvt(dyn, dynamic.list(of: dynamic.int), intlist_str)
+  |> cvt(dyn, dynamic.list(of: dynamic.float), floatlist_str)
+  |> cvt(dyn, dynamic.list(of: dynamic.string), stringlist_str)
   |> cvt(dyn, dynamic.string, fn(x) { x })
   }
 

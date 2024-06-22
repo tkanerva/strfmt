@@ -64,3 +64,24 @@ pub fn format_list_test() {
 
   str1 |> should.equal("a sequence of letters: [\"a\", \"b\", \"c\"]")
 }
+
+pub fn format_list_of_ints_test() {
+  let lst = [1,2,4,8,16]
+  let str1 =
+    format("list is: {}")
+    |> f(lst)
+    |> end()
+
+  str1 |> should.equal("list is: [1, 2, 4, 8, 16]")
+}
+
+pub fn format_list_of_floats_test() {
+  let lst = [3.14, 6.28]
+  let str1 =
+    format("multiples of pi: {}")
+    |> f(lst)
+    |> end()
+
+  str1 |> should.equal("multiples of pi: [3.14, 6.28]")
+}
+
